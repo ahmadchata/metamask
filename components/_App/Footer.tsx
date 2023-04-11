@@ -5,15 +5,15 @@ import sts from "/styles/Footer.module.css";
 const Footer: React.FC = () => {
   return (
     <footer className={`${sts.footer} row mx-0 align-items-center`}>
-      <div className="col-12 col-lg-7">
+      <div className="col-12 col-lg-7 text-center text-lg-start">
         {socialData.map((data) => (
           <Image
-            className="me-5"
-            key={data.id}
-            src={data.image}
-            width={data.width}
-            height={data.height}
-            alt={data.alt}
+            className={sts.spacing}
+            key={data?.id}
+            src={data?.image}
+            width={data?.width}
+            height={data?.height}
+            alt={data?.alt}
           />
         ))}
       </div>

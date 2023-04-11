@@ -1,5 +1,6 @@
 .sectionOne,
-.sectionTwo {
+.sectionTwo,
+.sectionThree {
   padding: 15vh 8vw;
   background-image: url("/img/bg/bg-section-1.png");
   background-repeat: no-repeat;
@@ -10,8 +11,34 @@
   background-image: url("/img/bg/bg-section-2.png");
 }
 
+.sectionThree {
+  background-image: url("/img/bg/bg-section-3.png");
+}
+
 .homeTimer {
   display: inline;
   background: #12161c;
   border-radius: 4px;
+}
+
+.cardBox {
+  color: #000;
+  width: 386px;
+  border-radius: 16px;
+  background: #ffff;
+}
+
+.cardDescription {
+  color: #707a8a;
+  font-size: 12px;
+}
+
+.spacing:not(:last-child) {
+  margin-right: 15px;
+}
+
+@media only screen and (max-width: 769px) {
+  .spacing:not(:last-child) {
+    margin-right: 0;
+  }
 }
