@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Navbar: React.FC = () => {
   return (
-    <nav className="d-flex justify-content-between py-2 px-3">
+    <nav className="d-flex justify-content-between py-2 px-3 sticky-top bg-white">
       <div>
         <Image
           src="/img/logo-deep-dive.png"
