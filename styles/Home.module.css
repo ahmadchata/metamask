@@ -1,0 +1,17 @@
+.sectionOne,
+.sectionTwo {
+  padding: 15vh 8vw;
+  background-image: url("/img/bg/bg-section-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.sectionTwo {
+  background-image: url("/img/bg/bg-section-2.png");
+}
+
+.homeTimer {
+  display: inline;
+  background: #12161c;
+  border-radius: 4px;
+}

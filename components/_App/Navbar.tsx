@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 const Navbar: React.FC = () => {
   return (
     <nav className="d-flex justify-content-between py-2 px-3">
@@ -11,7 +12,7 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div>
-        <button className="btn wallet_button">Connect Wallet</button>
+        <button className="btn wallet_btn">Connect Wallet</button>
       </div>
     </nav>
   );
