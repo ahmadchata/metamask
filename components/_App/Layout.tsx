@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Popup from "../Common/ConnectWallet";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -27,6 +28,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </Head>
 
       <Navbar />
+
+      <Popup />
 
       {children}
 

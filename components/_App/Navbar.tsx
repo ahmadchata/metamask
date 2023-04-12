@@ -1,6 +1,15 @@
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 
 const Navbar: React.FC = () => {
+  const dispatch = useDispatch();
+
+  const toggleConnectPopup = () => {
+    dispatch({
+      type: "CONNECT_POP_UP_STATE",
+    });
+  };
+
   return (
     <nav className="d-flex justify-content-between py-2 px-3 sticky-top bg-white">
       <div>
@@ -12,7 +21,9 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div>
-        <button className="btn wallet_btn">Connect Wallet</button>
+        <button className="btn wallet_btn" onClick={toggleConnectPopup}>
+          Connect Wallet
+        </button>
       </div>
     </nav>
   );
