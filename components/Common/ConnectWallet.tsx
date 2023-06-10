@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-// import { useWallet } from "use-wallet";
+import { useWallet } from "use-wallet";
 
 const Popup: React.FC = () => {
-  // const wallet = useWallet();
+  const wallet = useWallet();
   const dispatch = useDispatch();
   const connectPopup = useSelector((state: any) => state.connectPopupState);
 
@@ -17,8 +17,8 @@ const Popup: React.FC = () => {
   };
 
   const connectWallet = () => {
-    // wallet.connect();
-    toggleConnectPopup();
+    wallet.connect();
+    // toggleConnectPopup();
   };
 
   return connectPopup ? (
@@ -28,21 +28,36 @@ const Popup: React.FC = () => {
           <FontAwesomeIcon color="#000" size="xs" icon={faTimes} />
         </span>
         <div className="text-center p-4">
-          <h3>Connect a wallet</h3>
+          {wallet.status === "connected" ? (
+            <div>
+              <div>Account: {wallet.account}</div>
+              <div>Balance: {wallet.balance}</div>
+              <button
+                className="btn border my-5 px-3 py-2 bg-light"
+                onClick={() => wallet.reset()}
+              >
+                Disconnect
+              </button>
+            </div>
+          ) : (
+            <div>
+              <h3>Connect a wallet</h3>
+              <button
+                className="btn border my-5 px-3 py-2 bg-light"
+                onClick={connectWallet}
+              >
+                <Image
+                  className="me-4"
+                  src="/img/socials/metamask.png"
+                  width={34}
+                  height={31}
+                  alt="metamask"
+                />
+                Metamask
+              </button>
+            </div>
+          )}
 
-          <button
-            className="btn border my-5 px-3 py-2 bg-light"
-            // onClick={connectWallet}
-          >
-            <Image
-              className="me-4"
-              src="/img/socials/metamask.png"
-              width={34}
-              height={31}
-              alt="metamask"
-            />
-            Metamask
-          </button>
           <p>
             By connecting your wallet, you agree to our Terms of Service,
             Privacy and Cookie Policy.

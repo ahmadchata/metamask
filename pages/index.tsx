@@ -26,7 +26,7 @@ const Home: React.FC = () => {
               get one of Raven&apos;s first NFTs.
             </p>
             <button
-              className="btn wallet_btn px-4 py-2"
+              className="btn wallet_btn px-4 py-3"
               onClick={toggleConnectPopup}
             >
               Connect Wallet
