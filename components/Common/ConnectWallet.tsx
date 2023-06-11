@@ -1,57 +1,47 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { usePopup, Popup } from "@/store/Context";
+import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useWallet } from "use-wallet";
 
-const Modal: React.FC = () => {
+const Popup: React.FC = () => {
   const wallet = useWallet();
-  const { popup, setPopup } = usePopup();
-  console.log(popup);
+  const dispatch = useDispatch();
+  const connectPopup = useSelector((state: any) => state.connectPopupState);
+
+  const toggleConnectPopup = () => {
+    dispatch({
+      type: "CONNECT_POP_UP_STATE",
+    });
+  };
 
   const connectWallet = () => {
     wallet.connect();
-    // toggleConnectPopup();
+    toggleConnectPopup();
   };
 
-  return popup ? (
+  return connectPopup ? (
     <div className="popup-box">
       <div className="box">
-        <span className="close-icon" onClick={() => setPopup(Popup.Open)}>
+        <span className="close-icon" onClick={toggleConnectPopup}>
           <FontAwesomeIcon color="#000" size="xs" icon={faTimes} />
         </span>
         <div className="text-center p-4">
-          {wallet.status === "connected" ? (
-            <div>
-              <div>Account: {wallet.account}</div>
-              <div>Balance: {wallet.balance}</div>
-              <button
-                className="btn border my-5 px-3 py-2 bg-light"
-                onClick={() => wallet.reset()}
-              >
-                Disconnect
-              </button>
-            </div>
-          ) : (
-            <div>
-              <h3>Connect a wallet</h3>
-              <button
-                className="btn border my-5 px-3 py-2 bg-light"
-                onClick={connectWallet}
-              >
-                <Image
-                  className="me-4"
-                  src="/img/socials/metamask.png"
-                  width={34}
-                  height={31}
-                  alt="metamask"
-                />
-                Metamask
-              </button>
-            </div>
-          )}
-
+          <h3>Connect a wallet</h3>
+          <button
+            className="btn border my-5 px-3 py-2 bg-light"
+            onClick={connectWallet}
+          >
+            <Image
+              className="me-4"
+              src="/img/socials/metamask.png"
+              width={34}
+              height={31}
+              alt="metamask"
+            />
+            Metamask
+          </button>
           <p>
             By connecting your wallet, you agree to our Terms of Service,
             Privacy and Cookie Policy.
@@ -62,4 +52,4 @@ const Modal: React.FC = () => {
   ) : null;
 };
 
-export default Modal;
+export default Popup;

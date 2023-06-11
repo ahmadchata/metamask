@@ -2,8 +2,19 @@ import React from "react";
 import Image from "next/image";
 import sts from "@/styles/Home.module.css";
 import { collectionData } from "@/store/data/collections";
+import { useDispatch } from "react-redux";
+import { useWallet } from "use-wallet";
 
 const Home: React.FC = () => {
+  const wallet = useWallet();
+  const dispatch = useDispatch();
+
+  const toggleConnectPopup = () => {
+    dispatch({
+      type: "CONNECT_POP_UP_STATE",
+    });
+  };
+
   return (
     <>
       <main>
@@ -16,12 +27,21 @@ const Home: React.FC = () => {
               her first drop, exclusively on Deep Dive. Enter for a chance to
               get one of Raven&apos;s first NFTs.
             </p>
-            <button
-              className="btn wallet_btn px-4 py-3"
-              // onClick={toggleConnectPopup}
-            >
-              Connect Wallet
-            </button>
+            {wallet.status === "connected" ? (
+              <button
+                className="btn wallet_btn px-4 py-2"
+                onClick={() => wallet.reset()}
+              >
+                Disconnect Wallet
+              </button>
+            ) : (
+              <button
+                className="btn wallet_btn px-4 py-2"
+                onClick={toggleConnectPopup}
+              >
+                Connect Wallet
+              </button>
+            )}
           </div>
         </section>
 

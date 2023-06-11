@@ -2,19 +2,21 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { PopupContext, Popup } from "../store/Context";
+import { Provider } from "react-redux";
+import { useStore } from "../store/reducer/reducer";
+
 import Layout from "@/components/_App/Layout";
 import { UseWalletProvider } from "use-wallet";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [popup, setPopup] = React.useState(Popup.Open);
+  const store = useStore(pageProps.initialReduxState);
   return (
     <UseWalletProvider>
-      <PopupContext.Provider value={{ popup, setPopup }}>
+      <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </PopupContext.Provider>
+      </Provider>
     </UseWalletProvider>
   );
 }
