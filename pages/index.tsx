@@ -2,17 +2,8 @@ import React from "react";
 import Image from "next/image";
 import sts from "@/styles/Home.module.css";
 import { collectionData } from "@/store/data/collections";
-import { useDispatch } from "react-redux";
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
-
-  const toggleConnectPopup = () => {
-    dispatch({
-      type: "CONNECT_POP_UP_STATE",
-    });
-  };
-
   return (
     <>
       <main>
@@ -27,7 +18,7 @@ const Home: React.FC = () => {
             </p>
             <button
               className="btn wallet_btn px-4 py-3"
-              onClick={toggleConnectPopup}
+              // onClick={toggleConnectPopup}
             >
               Connect Wallet
             </button>

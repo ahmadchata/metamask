@@ -1,30 +1,24 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import { useSelector, useDispatch } from "react-redux";
+import { usePopup, Popup } from "@/store/Context";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useWallet } from "use-wallet";
 
-const Popup: React.FC = () => {
+const Modal: React.FC = () => {
   const wallet = useWallet();
-  const dispatch = useDispatch();
-  const connectPopup = useSelector((state: any) => state.connectPopupState);
-
-  const toggleConnectPopup = () => {
-    dispatch({
-      type: "CONNECT_POP_UP_STATE",
-    });
-  };
+  const { popup, setPopup } = usePopup();
+  console.log(popup);
 
   const connectWallet = () => {
     wallet.connect();
     // toggleConnectPopup();
   };
 
-  return connectPopup ? (
+  return popup ? (
     <div className="popup-box">
       <div className="box">
-        <span className="close-icon" onClick={toggleConnectPopup}>
+        <span className="close-icon" onClick={() => setPopup(Popup.Open)}>
           <FontAwesomeIcon color="#000" size="xs" icon={faTimes} />
         </span>
         <div className="text-center p-4">
@@ -68,4 +62,4 @@ const Popup: React.FC = () => {
   ) : null;
 };
 
-export default Popup;
+export default Modal;
