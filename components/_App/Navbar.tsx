@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { useDispatch } from "react-redux";
+import { useWallet } from "use-wallet";
 
 const Navbar: React.FC = () => {
+  const wallet = useWallet();
   const dispatch = useDispatch();
 
   const toggleConnectPopup = () => {
@@ -21,9 +23,15 @@ const Navbar: React.FC = () => {
         />
       </div>
       <div>
-        <button className="btn wallet_btn" onClick={toggleConnectPopup}>
-          Connect Wallet
-        </button>
+        {wallet.status === "connected" ? (
+          <button className="btn wallet_btn" onClick={toggleConnectPopup}>
+            {wallet.account}
+          </button>
+        ) : (
+          <button className="btn wallet_btn" onClick={toggleConnectPopup}>
+            Connect Wallet
+          </button>
+        )}
       </div>
     </nav>
   );

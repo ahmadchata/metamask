@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useWallet } from "use-wallet";
 
 const Popup: React.FC = () => {
+  const wallet = useWallet();
   const dispatch = useDispatch();
   const connectPopup = useSelector((state: any) => state.connectPopupState);
 
@@ -12,6 +14,11 @@ const Popup: React.FC = () => {
     dispatch({
       type: "CONNECT_POP_UP_STATE",
     });
+  };
+
+  const connectWallet = () => {
+    wallet.connect();
+    toggleConnectPopup();
   };
 
   return connectPopup ? (
@@ -22,8 +29,10 @@ const Popup: React.FC = () => {
         </span>
         <div className="text-center p-4">
           <h3>Connect a wallet</h3>
-
-          <button className="btn border my-5 px-3 py-2 bg-light">
+          <button
+            className="btn border my-5 px-3 py-2 bg-light"
+            onClick={connectWallet}
+          >
             <Image
               className="me-4"
               src="/img/socials/metamask.png"
