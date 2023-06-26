@@ -17,7 +17,7 @@ const Popup: React.FC = () => {
   };
 
   const connectWallet = () => {
-    wallet.connect();
+    wallet.connect("injected");
     toggleConnectPopup();
   };
 
