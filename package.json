@@ -19,6 +19,7 @@
     "bootstrap": "^5.2.3",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "ethers": "^6.6.1",
     "next": "13.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -26,6 +27,6 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "typescript": "5.0.4",
-    "use-wallet": "^0.13.6"
+    "use-wallet": "0.13.4"
   }
 }
